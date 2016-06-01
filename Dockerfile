@@ -22,15 +22,8 @@ RUN git init /root/wikidata
 # Expose default gollum port 4567
 EXPOSE 4567
 
-# Temporary hack until gitlab grit pushes master to rubygems
-RUN /bin/bash -c "source /usr/local/rvm/scripts/rvm \
-  && git clone https://github.com/gitlabhq/grit.git \
-  && cd grit \
-  && gem build gitlab-grit.gemspec \
-  && gem install gitlab-grit-2.7.3.gem"
-
 ADD ./Gemfile /root/
-RUN /bin/bash -c "source /usr/local/rvm/scripts/rvm && rvm --default use ruby-2.2.1 && cd /root && bundle install && cd -"
+RUN /bin/bash -c "source /usr/local/rvm/scripts/rvm && rvm --default use ruby-2.3.0 && cd /root && gem install bundler && bundle install && cd -"
 
 ADD ./run_gollum.sh /root/
 ENTRYPOINT ["/root/run_gollum.sh"]
