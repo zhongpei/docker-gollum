@@ -5,13 +5,13 @@ This Dockerfile is intended as a general purpose gollum instance. Adapted from h
 
 ## Installation
 
-	docker pull winkapp/docker-gollum
+	docker pull zhongpei/docker-gollum
 
 ## Usage
 
 ### Run container simply
 
-    sudo docker run -d -P --name gollum winkapp/docker-gollum
+    sudo docker run -d -P --name gollum zhongpei/docker-gollum
 
     # Check container port
     sudo docker port gollum
@@ -21,12 +21,12 @@ This Dockerfile is intended as a general purpose gollum instance. Adapted from h
 
 ### Change port to 80
 
-    sudo docker run -d -p 80:4567 --name gollum winkapp/docker-gollum
+    sudo docker run -d -p 80:4567 --name gollum zhongpei/docker-gollum
     wget http://localhost
 
 ### You can attach some options
 
-	sudo docker run -d -P --name gollum winkapp/docker-gollum --allow-uploads --live-preview
+	sudo docker run -d -P --name gollum zhongpei/docker-gollum --allow-uploads --live-preview
 
 [github.com/gollum/gollum](https://github.com/gollum/gollum#running)
 
@@ -36,7 +36,7 @@ This Dockerfile is intended as a general purpose gollum instance. Adapted from h
 	mkdir ~/wikidata
 	git init ~/wikidata
 
-	sudo docker run -d -P -v ~/wikidata:/root/wikidata winkapp/docker-gollum
+	sudo docker run -d -P -v ~/wikidata:/root/wikidata zhongpei/docker-gollum
 
 ### Load config file
 
@@ -47,10 +47,10 @@ This Dockerfile is intended as a general purpose gollum instance. Adapted from h
 	# Create config.rb
 	vi ~/config.rb
 
-	sudo docker run -d -P -v ~/wikidata:/root/wikidata winkapp/docker-gollum --config /root/wikidata/config.rb
+	sudo docker run -d -P -v ~/wikidata:/root/wikidata zhongpei/docker-gollum --config /root/wikidata/config.rb
 
 ### Use nginx-proxy
 
-	sudo docker run -d -P --name gollum -v ~/wikidata:/root/wikidata -e VIRTUAL_HOST=wiki.example.com -e VIRTUAL_PORT=80 -p 80 winkapp/docker-gollum --allow-uploads --config /root/wikidata/config.rb --port 80
+	sudo docker run -d -P --name gollum -v ~/wikidata:/root/wikidata -e VIRTUAL_HOST=wiki.example.com -e VIRTUAL_PORT=80 -p 80 zhongpei/docker-gollum --allow-uploads --config /root/wikidata/config.rb --port 80
 
 [github.com/jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy)
